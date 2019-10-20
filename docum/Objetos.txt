@@ -1,0 +1,9 @@
+- Auto
+avanzar()
+
+- Tren
+funcionar()
+
+- Zombie
+caminar()
+atacar()
