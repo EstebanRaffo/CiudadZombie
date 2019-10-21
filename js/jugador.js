@@ -12,5 +12,30 @@ var Jugador = {
   vidas: 5,
   // Hay que agregar lo que falte al jugador: movimientos, perdida de vidas,
   // y todo lo que haga falta para que cumpla con sus responsabilidades
+  
+  mover: function(movX, movY){
+    this.x += movX;
+    this.y += movY;
+  }, 
+  cambiarDireccion: function(tecla){
+    switch(tecla){
+      case 'izq':
+        this.sprite = 'imagenes/auto_rojo_izquierda.png';
+        break;
+      case 'arriba':
+        this.sprite = 'imagenes/auto_rojo_arriba.png';
+        break;
+      case 'der':
+        this.sprite = 'imagenes/auto_rojo_derecha.png';
+        break;
+      case 'abajo':
+        this.sprite = 'imagenes/auto_rojo_abajo.png';
+        break;
+    }
+  },
 
+  // 1.3  Guía :parte 2 Paso 3: Agregar vidas
+  perderVidas: function(cantVidas){
+    this.vidas -= cantVidas;
+  }
 }

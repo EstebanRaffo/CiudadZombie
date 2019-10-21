@@ -112,6 +112,7 @@ Juego.capturarMovimiento = function(tecla) {
   var movY = 0;
   var velocidad = this.jugador.velocidad;
 
+  Jugador.cambiarDireccion(tecla);
   // El movimiento esta determinado por la velocidad del jugador
   if (tecla == 'izq') {
     movX = -velocidad;
@@ -131,7 +132,7 @@ Juego.capturarMovimiento = function(tecla) {
     /* Aca tiene que estar la logica para mover al jugador invocando alguno
     de sus metodos  */
 
-    /* COMPLETAR */
+    Jugador.mover(movX, movY);
   }
 };
 
@@ -146,7 +147,7 @@ Juego.dibujar = function() {
   utilizando al dibujante y los metodos que nos brinda.
   "Dibujante dibuja al jugador" */
 
-  /* Completar */
+  Dibujante.dibujarEntidad(Jugador);
 
   // Se recorren los obstaculos de la carretera pintandolos
   this.obstaculosCarretera.forEach(function(obstaculo) {
