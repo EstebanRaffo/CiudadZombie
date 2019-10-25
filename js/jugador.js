@@ -42,7 +42,6 @@ var Jugador = {
     }
   },
 
-  // 1.3  Guía :parte 2 Paso 3: Agregar vidas
   perderVidas: function(cantVidas){
     this.vidas -= cantVidas;
   }

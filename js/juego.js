@@ -17,18 +17,29 @@ var Juego = {
   // Indica si el jugador gano
   ganador: false,
 
+  // 1.4  Guía: parte 3 Paso 1: Creá la carretera con obstáculos
+
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
-    new Obstaculo('imagenes/bache.png', 90, 410, 30, 30, 2),
-    new Obstaculo('imagenes/valla_horizontal.png', 130, 430, 30, 30, 1),
-    new Obstaculo('imagenes/valla_vertical.png', 110, 360, 30, 30, 1),
-    // new Obstaculo('imagenes/auto_rojo_arriba', 50, 350, 15, 30, 1),
-    // new Obstaculo('imagenes/auto_rojo_abajo', 200, 300, 15, 30, 1),
-    new Obstaculo('imagenes/auto_verde_derecha', 100, 350, 30, 15, 1 ),
-    new Obstaculo('imagenes/auto_verde_abajo', 90, 300, 15, 30, 1)
-
+    new Obstaculo('imagenes/bache.png', 90, 400, 30, 30, 2),
+    new Obstaculo('imagenes/valla_horizontal.png', 200, 450, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 120, 400, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 80, 260, 30, 15, 1 ),
+    new Obstaculo('imagenes/auto_verde_abajo.png', 350, 400, 15, 30, 1),
+    new Obstaculo('imagenes/auto_rojo_arriba.png', 480, 450, 15, 30, 1),
+    new Obstaculo('imagenes/auto_rojo_abajo.png', 530, 220, 15, 30, 1),
   ],
+
+  // var Obstaculo = function(sprite, x, y, ancho, alto, potencia) {
+  //   this.sprite = sprite;
+  //   this.x = x;
+  //   this.y = y;
+  //   this.ancho = ancho;
+  //   this.alto = alto;
+  //   this.potencia = potencia;
+  // }
+
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
    Ya estan ubicados en sus lugares correspondientes. Ya aparecen en el mapa, ya
    que son invisibles. No tenes que preocuparte por ellos.*/
