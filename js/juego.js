@@ -24,21 +24,12 @@ var Juego = {
     de ejemplo, pero podras agregar muchos mas. */
     new Obstaculo('imagenes/bache.png', 90, 400, 30, 30, 2),
     new Obstaculo('imagenes/valla_horizontal.png', 200, 450, 30, 30, 1),
-    new Obstaculo('imagenes/valla_vertical.png', 120, 400, 30, 30, 1),
-    new Obstaculo('imagenes/auto_verde_derecha.png', 80, 260, 30, 15, 1 ),
-    new Obstaculo('imagenes/auto_verde_abajo.png', 350, 400, 15, 30, 1),
-    new Obstaculo('imagenes/auto_rojo_arriba.png', 480, 450, 15, 30, 1),
-    new Obstaculo('imagenes/auto_rojo_abajo.png', 530, 220, 15, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 120, 480, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 80, 260, 30, 15, 2),
+    new Obstaculo('imagenes/auto_verde_abajo.png', 350, 400, 15, 30, 2),
+    new Obstaculo('imagenes/auto_rojo_arriba.png', 480, 450, 15, 30, 2),
+    new Obstaculo('imagenes/auto_rojo_abajo.png', 530, 220, 15, 30, 2),
   ],
-
-  // var Obstaculo = function(sprite, x, y, ancho, alto, potencia) {
-  //   this.sprite = sprite;
-  //   this.x = x;
-  //   this.y = y;
-  //   this.ancho = ancho;
-  //   this.alto = alto;
-  //   this.potencia = potencia;
-  // }
 
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
    Ya estan ubicados en sus lugares correspondientes. Ya aparecen en el mapa, ya
@@ -148,7 +139,6 @@ Juego.capturarMovimiento = function(tecla) {
   if (this.chequearColisiones(movX + this.jugador.x, movY + this.jugador.y)) {
     /* Aca tiene que estar la logica para mover al jugador invocando alguno
     de sus metodos  */
-
     Jugador.mover(movX, movY);
   }
 };
@@ -183,6 +173,12 @@ Juego.dibujar = function() {
     var x = tamanio * i
     Dibujante.dibujarRectangulo('red', x, 0, tamanio, 8);
   }
+
+  // Paso Opcional: Pintar la llegada
+  // Utilizando los métodos disponibles del objeto Dibujante podés demarcar en el mapa la llegada con algún color para que los 
+  // usuarios sepan hasta dónde deben llegar con el auto para ganar.
+  // dibujarRectangulo: function (color, x, y, ancho, alto)
+  Dibujante.dibujarRectangulo('green', 810, 520, 30, 30);
 };
 
 
@@ -212,15 +208,13 @@ Juego.calcularAtaques = function() {
 
 
 
-/* Aca se chequea si el jugador se peude mover a la posicion destino.
+/* Aca se chequea si el jugador se puede mover a la posicion destino.
  Es decir, que no haya obstaculos que se interpongan. De ser asi, no podra moverse */
 Juego.chequearColisiones = function(x, y) {
   var puedeMoverse = true
   this.obstaculos().forEach(function(obstaculo) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
-
-      /*COMPLETAR, obstaculo debe chocar al jugador*/
-
+      obstaculo.chocar(this.jugador);
       puedeMoverse = false
     }
   }, this)
@@ -280,5 +274,5 @@ document.addEventListener('keydown', function(e) {
     40: 'abajo'
   };
 
-  Juego.capturarMovimiento(allowedKeys[e.keyCode]);
+  Juego.capturarMovimiento(allowedKeys[e.keyCode]);  
 });
