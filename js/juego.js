@@ -35,7 +35,7 @@ var Juego = {
    Ya estan ubicados en sus lugares correspondientes. Ya aparecen en el mapa, ya
    que son invisibles. No tenes que preocuparte por ellos.*/
   bordes: [
-    // // Bordes
+    // Bordes
     new Obstaculo('', 0, 5, 961, 18, 0),
     new Obstaculo('', 0, 559, 961, 18, 0),
     new Obstaculo('', 0, 5, 18, 572, 0),
@@ -50,9 +50,21 @@ var Juego = {
     new Obstaculo('', 279, 23, 664, 56, 2),
     new Obstaculo('', 887, 79, 56, 480, 2)
   ],
+
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-
+    //var ZombieCaminante = function(sprite, x, y, ancho, alto, velocidad, rangoMov)
+    /*rangoMov: los limites en el mapa donde se puede mover, sera un diccionario con la
+    siguiente forma: {desdeX: valor, hastaX: valor, desdeY: valor, hastaY: valor} */
+    new ZombieCaminante('imagenes/zombie1.png', 810, 420, 10, 10, 1, {desdeX: 760, hastaX: 860, desdeY: 400, hastaY: 440}),
+    new ZombieCaminante('imagenes/zombie2.png', 800, 100, 10, 10, 1, {desdeX: 760, hastaX: 860, desdeY: 100, hastaY: 200}),
+    new ZombieCaminante('imagenes/zombie3.png', 790, 200, 10, 10, 1, {desdeX: 760, hastaX: 860, desdeY: 200, hastaY: 300}),
+    new ZombieCaminante('imagenes/zombie4.png', 500, 120, 10, 10, 1, {desdeX: 400, hastaX: 600, desdeY: 80, hastaY: 160}),
+    new ZombieCaminante('imagenes/zombie4.png', 400, 220, 10, 10, 1, {desdeX: 300, hastaX: 450, desdeY: 180, hastaY: 270}),    
+    // var ZombieConductor = function(sprite, x, y, ancho, alto, velocidad, rangoMov, direccion)
+    new ZombieConductor('imagenes/tren_vertical.png', 644, 0, 30, 90, 4, {desdeX: 644, hastaX: 644, desdeY: 1, hastaY: 500}, 'v'),
+    new ZombieConductor('imagenes/tren_vertical.png', 673, 250, 30, 90, 4, {desdeX: 673, hastaX: 673, desdeY: 1, hastaY: 500}, 'v'),
+    new ZombieConductor('imagenes/tren_horizontal.png', 400, 322, 90, 30, 6, {desdeX: 0, hastaX: 900, desdeY: 322, hastaY: 322}, 'h') 
   ]
 
 }
@@ -149,21 +161,14 @@ Juego.dibujar = function() {
   //Se pinta la imagen de fondo segun el estado del juego
   this.dibujarFondo();
 
-
   /* Aca hay que agregar la logica para poder dibujar al jugador principal
   utilizando al dibujante y los metodos que nos brinda.
   "Dibujante dibuja al jugador" */
-
   Dibujante.dibujarEntidad(Jugador);
 
   // Se recorren los obstaculos de la carretera pintandolos
   this.obstaculosCarretera.forEach(function(obstaculo) {
     Dibujante.dibujarEntidad(obstaculo);
-  });
-
-  // Se recorren los enemigos pintandolos
-  this.enemigos.forEach(function(enemigo) {
-    /* Completar */
   });
 
   // El dibujante dibuja las vidas del jugador
@@ -179,6 +184,12 @@ Juego.dibujar = function() {
   // usuarios sepan hasta dónde deben llegar con el auto para ganar.
   // dibujarRectangulo: function (color, x, y, ancho, alto)
   Dibujante.dibujarRectangulo('green', 810, 520, 30, 30);
+
+  // Enemigos
+  // Se recorren los enemigos pintandolos
+  this.enemigos.forEach(function(enemigo) {
+    Dibujante.dibujarEntidad(enemigo);
+  });
 };
 
 
@@ -187,7 +198,9 @@ Juego.dibujar = function() {
 un recorrido por los enemigos para dibujarlos en pantalla ahora habra que hacer
 una funcionalidad similar pero para que se muevan.*/
 Juego.moverEnemigos = function() {
-  /* COMPLETAR */
+  this.enemigos.forEach(function(enemigo){
+    enemigo.mover();
+  });
 };
 
 /* Recorre los enemigos para ver cual esta colisionando con el jugador
@@ -197,15 +210,14 @@ se ven las colisiones con los obstaculos. En este caso sera con los zombies. */
 Juego.calcularAtaques = function() {
   this.enemigos.forEach(function(enemigo) {
     if (this.intersecan(enemigo, this.jugador, this.jugador.x, this.jugador.y)) {
-      /* Si el enemigo colisiona debe empezar su ataque
-      COMPLETAR */
+      // Si el enemigo colisiona debe empezar su ataque
+      enemigo.comenzarAtaque(this.jugador);
     } else {
-      /* Sino, debe dejar de atacar
-      COMPLETAR */
+      // Sino, debe dejar de atacar
+      enemigo.dejarDeAtacar();
     }
   }, this);
 };
-
 
 
 /* Aca se chequea si el jugador se puede mover a la posicion destino.
