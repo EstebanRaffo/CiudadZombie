@@ -182,8 +182,8 @@ Juego.dibujar = function() {
   // Utilizando los métodos disponibles del objeto Dibujante podés demarcar en el mapa la llegada con algún color para que los 
   // usuarios sepan hasta dónde deben llegar con el auto para ganar.
   // dibujarRectangulo: function (color, x, y, ancho, alto)
-  Dibujante.dibujarRectanguloLlegada('blue', 790, 520, 60, 30);
-  Dibujante.dibujarTextoLlegada('blue', 800, 520);
+  Dibujante.dibujarRectanguloLlegada('white', 785, 535, 77, 30);
+  Dibujante.dibujarTextoLlegada('blue', 790, 560);
 
   // Enemigos
   // Se recorren los enemigos pintandolos

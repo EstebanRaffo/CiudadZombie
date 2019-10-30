@@ -47,7 +47,7 @@ var Dibujante = {
   dibujarTextoLlegada: function(color, x, y){
     var ctx = this.canvas.getContext('2d');
     ctx.fillStyle = color;
-    ctx.font = 'bold 15px sans-serif';
+    ctx.font = 'bold 18px sans-serif';
     ctx.fillText('Llegada', x, y);
   }
 }
