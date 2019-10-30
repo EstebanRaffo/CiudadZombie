@@ -37,4 +37,17 @@ var Dibujante = {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, ancho, alto);
   },
+
+  dibujarRectanguloLlegada: function (color, x, y, ancho, alto) {
+    var ctx = this.canvas.getContext('2d');
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, ancho, alto);
+  },
+
+  dibujarTextoLlegada: function(color, x, y){
+    var ctx = this.canvas.getContext('2d');
+    ctx.fillStyle = color;
+    ctx.font = 'bold 15px sans-serif';
+    ctx.fillText('Llegada', x, y);
+  }
 }

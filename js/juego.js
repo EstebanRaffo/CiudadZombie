@@ -112,7 +112,6 @@ Juego.comenzar = function() {
 };
 
 Juego.buclePrincipal = function() {
-
   // Con update se actualiza la logica del juego, tanto ataques como movimientos
   this.update();
   // Funcion que dibuja por cada fotograma a los objetos en pantalla.
@@ -183,7 +182,8 @@ Juego.dibujar = function() {
   // Utilizando los métodos disponibles del objeto Dibujante podés demarcar en el mapa la llegada con algún color para que los 
   // usuarios sepan hasta dónde deben llegar con el auto para ganar.
   // dibujarRectangulo: function (color, x, y, ancho, alto)
-  Dibujante.dibujarRectangulo('green', 810, 520, 30, 30);
+  Dibujante.dibujarRectanguloLlegada('blue', 790, 520, 60, 30);
+  Dibujante.dibujarTextoLlegada('blue', 800, 520);
 
   // Enemigos
   // Se recorren los enemigos pintandolos
